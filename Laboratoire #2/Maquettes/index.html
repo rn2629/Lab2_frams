@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <title>Acceuil</title>
 </head>
-
 <body>
 <div class="dashboard-main-wrapper">
     <!-- ============================================================== -->
@@ -18,10 +17,11 @@
     <!-- ============================================================== -->
     <div class="dashboard-header">
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="#">Inventaire</a>
+            <a class="navbar-brand" onclick="Inventaire()" href="#">Inventaire</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
+
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-right-top">
                     <li class="nav-item">
@@ -38,159 +38,78 @@
         </nav>
     </div>
 </div>
-    <div id="app">
-          <router-link to="/liste"> Parcourir Liste </router-link>
-          <router-link to="/ajout">Patcourir Ajout   </router-link>
-          <router-link to="/produit">Patcourir  Produit </router-link>
-          <router-link to="/modification">Parcourir Modification </router-link>
-
-        <router-view></router-view>
-    </div>
+<div id="app">
+    <!--  <router-link to="/bar">Go to Bar</router-link> -->
+    <router-link to="/">Liste</router-link>
+    <router-link to="/ajout">Ajouter un produit</router-link>
+    <router-view></router-view>
+</div>
 </body>
-
-<!-- ============================================================================ LISTE ==================================================================== -->
+<!--  *******************************************     LISTE       ***********************************************  -->
 <script type="text/x-template" id="liste">
-<div class="dashboard-wrapper">
-    <div class="dashboard-ecommerce">
-        <div class="container-fluid dashboard-content ">
-            <div class="row">
-                <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="product-thumbnail">
-                                <div class="product-img-head">
-                                    <div class="product-img">
-                                        <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-content-head">
-                                        <h3 class="product-title">Produit #1</h3>
-                                        <div class="product-price">49</div>
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        <div class="row">
+                            <div v-for="item in $root.produits" class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="product-thumbnail">
+                                    <div class="product-img-head">
+                                        <div class="product-img">
+                                            <img href="" v-bind:src="item.urlImage" alt="" class="img-fluid" height="285" width="313"></div>
                                     </div>
-                                    <div class="product-btn">
-                                        <a href="#" class="btn btn-primary">Modifier</a>
-                                        <a href="#" class="btn btn-outline-light">Détails</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="product-thumbnail">
-                                <div class="product-img-head">
-                                    <div class="product-img">
-                                        <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-content-head">
-                                        <h3 class="product-title">Produit #1</h3>
-                                        <div class="product-price">49</div>
-                                    </div>
-                                    <div class="product-btn">
-                                        <a href="#" class="btn btn-primary">Modifier</a>
-                                        <a href="#" class="btn btn-outline-light">Détails</a>
+                                    <div class="product-content">
+                                        <div class="product-content-head">
+                                            <h3 class="product-title">{{item.nom}}</h3>
+                                            <div class="product-price">{{item.prix}} $</div>
+                                        </div>
+                                        <div class="product-btn">
+                                            <div href="#"  v-on:click="$root.Modifier(item.cle)" class="btn btn-primary">Modifier</div>
+                                            <div href="#" v-on:click="$root.Details(item.cle)"  class="btn btn-outline-light">Détails</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="product-thumbnail">
-                                <div class="product-img-head">
-                                    <div class="product-img">
-                                        <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-content-head">
-                                        <h3 class="product-title">Produit #1</h3>
-                                        <div class="product-price">49</div>
-                                    </div>
-                                    <div class="product-btn">
-                                        <a href="#" class="btn btn-primary">Modifier</a>
-                                        <a href="#" class="btn btn-outline-light">Détails</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="product-thumbnail">
-                                <div class="product-img-head">
-                                    <div class="product-img">
-                                        <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-content-head">
-                                        <h3 class="product-title">Produit #1</h3>
-                                        <div class="product-price">49</div>
-                                    </div>
-                                    <div class="product-btn">
-                                        <a href="#" class="btn btn-primary">Modifier</a>
-                                        <a href="#" class="btn btn-outline-light">Détails</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="product-thumbnail">
-                                <div class="product-img-head">
-                                    <div class="product-img">
-                                        <img src="assets/images/eco-product-img-1.png" alt="" class="img-fluid"></div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-content-head">
-                                        <h3 class="product-title">Produit #1</h3>
-                                        <div class="product-price">49</div>
-                                    </div>
-                                    <div class="product-btn">
-                                        <a href="#" class="btn btn-primary">Modifier</a>
-                                        <a href="#" class="btn btn-outline-light">Détails</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 </script>
-
-<!-- ============================================================================ PRODUIT ==================================================================== -->
+<!--  *******************************************     PRODUIT       ***********************************************  -->
 <script type="text/x-template" id="produit">
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
             <div class="container-fluid dashboard-content ">
-
                 <div class="row">
                     <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
                                 <div class="product-slider">
-                                    <img class="d-block" src="assets/images/eco-slider-img-1.png" alt="First slide">
-
+                                    <img class="d-block" src="assets/images/eco-slider-img-1.png" alt="First slide" height="285" width="313" id="imgP">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
                                 <div class="product-details">
                                     <div class="border-bottom pb-3 mb-3">
-                                        <h2 class="mb-3">Produit #1</h2>
-                                        <h3 class="mb-0 text-primary">$49.00</h3>
+                                        <h2 class="mb-3" id="nomProduit">Produit #1</h2>
+                                        <h3 class="mb-0 text-primary" id="prixP">$49.00</h3>
                                     </div>
                                     <div class="product-size border-bottom">
                                         <h4>Fournisseur</h4>
-                                        ACME Inc.
+                                        <p id="fournisseurP">ACME Inc.</p>
                                         <div class="product-qty">
                                             <h4>Quantité</h4>
                                             <div class="quantity">
-                                                1
+                                                <p id="qtiteP">1</p>
                                             </div>
+                                            <input type="hidden" id="IdP" value="">
                                         </div>
                                     </div>
                                     <div class="product-description">
                                         <h4 class="mb-1">Description</h4>
-                                        <p>Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                                        <p id="descP">Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
                                         <a href="#" class="btn btn-primary btn-block btn-lg">Modifier</a>
+
                                     </div>
                                 </div>
                             </div>
@@ -201,57 +120,53 @@
         </div>
     </div>
 </script>
-<!-- ============================================================================ AJOUT ==================================================================== -->
+<!--  *******************************************     AJOUT       ***********************************************  -->
 <script type="text/x-template" id="ajout">
-    <div class="dashboard-main-wrapper">
+    <form>
+        <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
-
                     <div class="row">
                         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
                                     <div class="product-slider">
-                                        <img class="d-block" src="assets/images/eco-slider-img-1.png" alt="First slide">
-                                        <a href="#" class="btn btn-primary btn-block btn-lg">Choisir une image</a>
+                                        <img class="d-block" width="285" height="313" src="assets/images/eco-slider-img-1.png" alt="First slide" id="imgAdd">
+                                        <input href="#" type="url" placeholder="Copier l'adresse de l'image" content="Choisir une image" class="btn btn-primary btn-block btn-lg" onchange="addImage()" id="AddImg" name="AddImg">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
                                     <div class="product-details">
                                         <div class="border-bottom pb-3 mb-3">
-                                            <h2 class="mb-3"><input type="text" value="Produit #1"></input></h2>
-                                            <h3 class="mb-0 text-primary">$<input type="text" value="49.00"></h3>
+                                            <h2 class="mb-3"><input type="text" value="Produit #1" id="txtNom" name="txtNom"/></h2>
+                                            <h3 class="mb-0 text-primary">$<input type="text" value="49.00" id="prix" name="prix"></h3>
                                         </div>
                                         <div class="product-size border-bottom">
                                             <h4>Fournisseur</h4>
-                                            <input type="text" value="ACME Inc.">
+                                            <input type="text" value="ACME Inc." id="txtFournisseur" name="txtFournisseur">
                                             <div class="product-qty">
                                                 <h4>Quantité</h4>
                                                 <div class="quantity">
-                                                    <input type="number" value="1">
+                                                    <input type="number" value="1" id="qtite" name="qtite">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="product-description">
                                             <h4 class="mb-1">Description</h4>
-                                            <textarea rows="4" cols="50">Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</textarea>
-                                            <a href="#" class="btn btn-primary btn-block btn-lg">Sauvegarder</a>
+                                            <textarea rows="4" cols="50" id="txtDescription" name="txtDescription">Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</textarea>
+                                            <a href="#" class="btn btn-primary btn-block btn-lg" onclick="AjoutProduit()">Sauvegarder</a>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
+    </form>
 </script>
-
-<!-- ============================================================================ MODIFICATIOIN ==================================================================== -->
+<!--  *******************************************     MODIFICATION       ***********************************************  -->
 <script type="text/x-template" id="modification">
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
@@ -262,37 +177,36 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
                                 <div class="product-slider">
-                                    <img class="d-block" src="assets/images/eco-slider-img-1.png" alt="First slide">
-                                    <a href="#" class="btn btn-primary btn-block btn-lg">Choisir une image</a>
+                                    <img class="d-block" id="modifImg" src="assets/images/eco-slider-img-1.png" alt="First slide" height="285" width="313">
+                                    <input type="url" id="btnImg" required class="btn btn-primary btn-block btn-lg" placeholder="Copier l'adresse de l'image" onchange="modifImage()">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
                                 <div class="product-details">
                                     <div class="border-bottom pb-3 mb-3">
-                                        <h2 class="mb-3"><input type="text" value="Produit #1"></input></h2>
-                                        <h3 class="mb-0 text-primary">$<input type="text" value="49.00"></h3>
+                                        <h2 class="mb-3"><input type="text" value="Produit #1" id="nomM" name="nomM"></h2>
+                                        <h3 class="mb-0 text-primary">$<input type="text" value="49.00" id="prixM" name="prixM"></h3>
                                     </div>
                                     <div class="product-size border-bottom">
                                         <h4>Fournisseur</h4>
-                                        <input type="text" value="ACME Inc.">
+                                        <input type="text" value="ACME Inc." id="fournisseurM" name="fournisseurM">
                                         <div class="product-qty">
                                             <h4>Quantité</h4>
                                             <div class="quantity">
-                                                <input type="number" value="1">
+                                                <input type="number" value="1" id="qtiteM" name="qtiteM">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-description">
                                         <h4 class="mb-1">Description</h4>
-                                        <textarea rows="4" cols="50">Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</textarea>
-                                        <a href="#" class="btn btn-primary btn-block btn-lg">Sauvegarder</a>
+                                        <input type="hidden" value="" id="modifId">
+                                        <textarea rows="4" cols="50" id="descM" name="descM">Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</textarea>
+                                        <a href="#" class="btn btn-primary btn-block btn-lg" onclick="ModifierProduit()">Modifier</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -300,9 +214,47 @@
 </script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-
- <script src="assets/libs/js/traitement.js"></script>
-<!-- -->
-</div>
-</body>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="assets/libs/js/traitement.js"></script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
