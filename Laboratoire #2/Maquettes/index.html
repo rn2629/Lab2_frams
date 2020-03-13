@@ -178,7 +178,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30">
                                 <div class="product-slider">
                                     <img class="d-block" id="modifImg" name="modifImg" src="assets/images/eco-slider-img-1.png" alt="First slide" height="285" width="313">
-                                    <input type="url" id="btnImg" required class="btn btn-primary btn-block btn-lg" placeholder="Copier l'adresse de l'image" onchange="modifImage()">
+                                    <input type="url" id="btnImg"name="btnImg" required class="btn btn-primary btn-block btn-lg" placeholder="Copier l'adresse de l'image" onchange="modifImage()">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
@@ -199,9 +199,9 @@
                                     </div>
                                     <div class="product-description">
                                         <h4 class="mb-1">Description</h4>
-                                        <input type="hidden" value="" id="modifId">
+                                        <input type="hidden" value="" id="modifId" name="modifId">
                                         <textarea rows="4" cols="50" id="descM" name="descM">Praesent et cursus quam. Etiam vulputate est et metus pellentesque iaculis. Suspendisse nec urna augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</textarea>
-                                        <a href="#"  onclick="ModifierProduit()" class="btn btn-primary btn-block btn-lg">Modifier</a>
+                                        <a href="#" class="btn btn-primary btn-block btn-lg" onclick="ModifierProduit()">Modifier</a>
                                     </div>
                                 </div>
                             </div>

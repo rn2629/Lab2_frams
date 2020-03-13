@@ -191,20 +191,52 @@ return Valid;
 
 function ModifierProduit(){
 
-    var cleP=parseInt($("#modifId").val());
-    router.push("/");
+    var Valid = true;
+
+    if(validNom(document.getElementById("nomM").value)=== false){
+
+        Valid = false;
+        document.getElementById("nomM").style.borderColor = "Red";
+    }
+    if(validPrix(document.getElementById("prixM").value)=== false) {
+
+        Valid = false;
+        document.getElementById("prixM").style.borderColor = "Red";
+    }
+    if(validQtite(document.getElementById("qtiteM").value)=== false) {
+
+        Valid = false;
+        document.getElementById("qtiteM").style.borderColor = "Red";
+    }
+    if(validFournisseur(document.getElementById("fournisseurM").value)=== false) {
+
+        Valid = false;
+        document.getElementById("fournisseurM").style.borderColor = "Red";
+    }
+    if((document.getElementById("btnImg").value)=== "") {
+        $("#modifImg").attr('src',$("#btnImg").val());
+    }
+
+    if(Valid===true){
+
+        var cleP=parseInt(document.getElementById("modifId").value);
+        router.push("/");
         var transaction = bd.transaction(["MonCommerce"], "readwrite");
         var MonCommerce = transaction.objectStore("MonCommerce");
-    MonCommerce.put({
-            cle: cleP,
-            nom: document.getElementById("nomM").value,
-            prix: document.getElementById("prixM").value,
-            fournisseur: document.getElementById("fournisseurM").value,
-            description: document.getElementById("descM").value,
-            urlImage: document.getElementById("imgM").value,
-            quantite: document.getElementById("qtiteM").value
+        MonCommerce.put({
+            cle : cleP,
+            nom : (document.getElementById("nomM").value),
+            quantite : (document.getElementById("qtiteM").value),
+            urlImage :(document.getElementById("btnImg").value),
+            prix : (document.getElementById("prixM").value),
+            fournisseur : (document.getElementById("fournisseurM").value),
+            description : document.getElementById("descM").value,
+
         });
-    afficherListe();
+        afficherListe();
+    }
+
+    return Valid;
 
 }
 
@@ -228,7 +260,7 @@ function validQtite(chaine)
 
 
 function modifImage(){
-    $("#imgModif").attr('src',$("#btnImg").val());
+    $("#modifImg").attr('src',$("#btnImg").val());
 
 }
 
