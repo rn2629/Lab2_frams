@@ -44,14 +44,14 @@ requete.onupgradeneeded = function(event){
 const Liste = { template: '#liste' };
 const Details = { template: '#produit' };
 const Ajout = { template: '#ajout' };
-const Modification = { template: '#modification',watch:{$route(to,from){}} };
+const Modification = { template: '#modification'} ;
 
 
 const routes = [
     { path: '/', component: Liste },
     { path: '/produits/:produitId', component: Details },
     { path: '/ajout', component: Ajout },
-    { path: '/produits/produiutId/edition', component: Modification }
+    { path: '/produits/:produiutId/edition', component: Modification }
 ];
 
 
@@ -180,7 +180,7 @@ function AjoutProduit()
             prix : (document.getElementById("prix").value),
             fournisseur : (document.getElementById("txtFournisseur").value),
             description : document.getElementById("txtDescription").value,
-            autre: true
+
         });
         afficherListe();
     }
@@ -190,8 +190,23 @@ return Valid;
 }
 
 function ModifierProduit(){
-}
 
+    var cleP=parseInt($("#modifId").val());
+    router.push("/");
+        var transaction = bd.transaction(["MonCommerce"], "readwrite");
+        var MonCommerce = transaction.objectStore("MonCommerce");
+    MonCommerce.put({
+            cle: cleP,
+            nom: document.getElementById("nomM").value,
+            prix: document.getElementById("prixM").value,
+            fournisseur: document.getElementById("fournisseurM").value,
+            description: document.getElementById("descM").value,
+            urlImage: document.getElementById("imgM").value,
+            quantite: document.getElementById("qtiteM").value
+        });
+    afficherListe();
+
+}
 
 
 function validNom(chaine)
